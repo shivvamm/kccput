@@ -82,6 +82,8 @@
                 <th>OPERATON</th>
 
                 <th>RESULT</th>
+
+                <th>DELETE</th>
             </tr>
 
 
@@ -98,6 +100,8 @@
                 <td class="op"></td>
 
                 <td class="res"></td>
+
+                <td class="del"></td>
 
             </tr>
         </table>
@@ -123,9 +127,10 @@
                     $(".z").append('<p>' + p + '</p>');
                     $(".res").append('<p>' + data + '</p>');
                     $(".op").append('<p>+<p>');
+                    $(".del").append('<button id="del" name="DEL">DELETE<button>');
                 });
             });
-        })
+        });
         $(document).ready(() => {
             $(".sub").click(function (event) {
                 event.preventDefault()//uses to preventDefault functionality of event
@@ -140,9 +145,10 @@
                     $(".z").append('<p>' + p + '</p>');
                     $(".res").append('<p>' + data + '</p>');
                     $(".op").append('<p>-<p>');
+                    $(".del").append('<button id="del" name="DEL">DELETE</button>');
                 });
             });
-        })
+        });
         $(document).ready(() => {
             $(".mul").click(function (event) {
                 event.preventDefault()//uses to preventDefault functionality of event
@@ -157,9 +163,29 @@
                     $(".z").append('<p>' + p + '</p>');
                     $(".res").append('<p>' + data + '</p>');
                     $(".op").append('<p>*<p>');
+                    $(".del").append('<button id="del" name="DEL">DELETE</button>');
                 });
             });
-        })
+        });
+
+        $(document).ready(() => {
+            $(".add").click(function (event) {
+                event.preventDefault()//uses to preventDefault functionality of event
+                var m = $(".num1").val()
+                var n = $(".num2").val()
+                var p = $(".num3").val()
+                $.post({ url: "/add", data: { a: $(".num1").val(), b: $(".num2").val(),c: $(".num3").val() } }).then((data) => {
+                    console.log(data);
+                    $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
+                    $(".x").append('<p>' + m + '</p>');
+                    $(".y").append('<p>' + n + '</p>');
+                    $(".z").append('<p>' + p + '</p>');
+                    $(".res").append('<p>' + data + '</p>');
+                    $(".op").append('<p>+<p>');
+                    $(".del").append('<button id="del" name="DEL">DELETE<button>');
+                });
+            });
+        });
     </script>
 </body>
 
