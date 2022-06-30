@@ -13,7 +13,15 @@ var pool = mysql.createPool({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  pool.getConnection(function (err,connection){
+    connection.query("SELECT * FROM   RESULTS ORDER BY id",function(err,rows){
+       if(err) throw err;
+       else console.log(rows);
+       var row = JSON.stringify(rows);
+       res.render('index',{row});
+    });
+ });
+  
 });
 
 module.exports = router;
