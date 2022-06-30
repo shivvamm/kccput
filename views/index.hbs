@@ -69,8 +69,8 @@
         </form>
     </div>
     <div id="calc">
-        {{!-- <b id="ans"></b> --}}
-
+        
+  
         <table>
             <tr>
                 <th>VALUE OF X</th>
@@ -87,10 +87,10 @@
             </tr>
 
 
-            <tr>
+            <tr class="sol">
 
 
-
+               
                 <td class="x"></td>
 
                 <td class="y"></td>
@@ -106,13 +106,9 @@
             </tr>
         </table>
 
-
-
-
+{{row}}
     </div>
-    {{row}}
     <script>
-
         $(document).ready(() => {
             $(".add").click(function (event) {
                 event.preventDefault()//uses to preventDefault functionality of event
@@ -127,7 +123,7 @@
                     $(".z").append('<p>' + p + '</p>');
                     $(".res").append('<p>' + data + '</p>');
                     $(".op").append('<p>+<p>');
-                    $(".del").append('<button id="del" name="DEL">DELETE<button>');
+                    $(".del").append('<p><button id="del" name="DEL">DELETE<button></p>');
                 });
             });
         });
@@ -145,7 +141,7 @@
                     $(".z").append('<p>' + p + '</p>');
                     $(".res").append('<p>' + data + '</p>');
                     $(".op").append('<p>-<p>');
-                    $(".del").append('<button id="del" name="DEL">DELETE</button>');
+                    $(".del").append('<p><button id="del" name="DEL">DELETE</button></p>');
                 });
             });
         });
@@ -163,26 +159,7 @@
                     $(".z").append('<p>' + p + '</p>');
                     $(".res").append('<p>' + data + '</p>');
                     $(".op").append('<p>*<p>');
-                    $(".del").append('<button id="del" name="DEL">DELETE</button>');
-                });
-            });
-        });
-
-        $(document).ready(() => {
-            $(".add").click(function (event) {
-                event.preventDefault()//uses to preventDefault functionality of event
-                var m = $(".num1").val()
-                var n = $(".num2").val()
-                var p = $(".num3").val()
-                $.post({ url: "/add", data: { a: $(".num1").val(), b: $(".num2").val(),c: $(".num3").val() } }).then((data) => {
-                    console.log(data);
-                    $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
-                    $(".x").append('<p>' + m + '</p>');
-                    $(".y").append('<p>' + n + '</p>');
-                    $(".z").append('<p>' + p + '</p>');
-                    $(".res").append('<p>' + data + '</p>');
-                    $(".op").append('<p>+<p>');
-                    $(".del").append('<button id="del" name="DEL">DELETE<button>');
+                    $(".del").append('<p><button id="del" name="DEL">DELETE</button></p>');
                 });
             });
         });
