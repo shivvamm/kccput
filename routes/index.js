@@ -14,7 +14,7 @@ var pool = mysql.createPool({
 /* GET home page. */
 router.get('/', function(req, res, next) {
   pool.getConnection(function (err,connection){
-    connection.query("SELECT * FROM   RESULTS ORDER BY id",function(err,rows){
+    connection.query("SELECT * FROM   RESULT ORDER BY id",function(err,rows){
        if(err) throw err;
        else console.log(rows);
        var row = JSON.stringify(rows);
@@ -72,6 +72,21 @@ router.post('/mul',function(req, res){
        connection.release();
        if(err) throw err;
        console.log(rows.length);
+    });
+ });  
+});
+
+
+router.post('/del',function(req, res){
+  console.log("deletion");
+  var id = (req.body.id);
+  console.log(id);
+  pool.getConnection(function (err,connection){
+    connection.query("DELETE FROM RESULT WHERE id='"+id+"';",function(err,rows){
+       connection.release();
+       location.reload();
+       if(err) throw err;
+       else console.log("delete");
     });
  });  
 });
